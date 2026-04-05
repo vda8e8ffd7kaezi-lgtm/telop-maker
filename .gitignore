@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+output/*.mp4
+output/*.srt
+output/*.wav
+*.egg-info/
+dist/
+build/
+.DS_Store
+
+.claude
+.mcp.json

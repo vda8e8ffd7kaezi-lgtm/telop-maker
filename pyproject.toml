@@ -1,0 +1,15 @@
+[project]
+name = "telop-maker"
+version = "1.0.0"
+description = "MP4動画から自動文字起こし・テロップ生成アプリ"
+requires-python = ">=3.10"
+dependencies = [
+    "faster-whisper>=1.0.0",
+    "ffmpeg-python>=0.2.0",
+    "streamlit>=1.30.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+]
