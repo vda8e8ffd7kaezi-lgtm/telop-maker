@@ -51,6 +51,7 @@ class TelopStyle:
             f"Outline={self.outline_width}",
             f"Bold={weight}",
             alignment,
+            "WrapStyle=2",
         ]
         if self.background_box:
             parts.append("BorderStyle=3")

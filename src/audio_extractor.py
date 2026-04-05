@@ -88,3 +88,30 @@ def get_video_info(video_path: str | Path) -> dict:
         "file_size_mb": round(file_size / (1024 * 1024), 1),
     }
     return info
+
+
+def extract_frame(video_path: str | Path, timestamp: float) -> bytes:
+    """
+    動画から指定時刻のフレームをJPEG画像として抽出する。
+
+    Args:
+        video_path: 動画ファイルのパス
+        timestamp: 抽出する時刻（秒）
+
+    Returns:
+        JPEG画像のバイナリデータ
+    """
+    cmd = [
+        "ffmpeg",
+        "-ss", f"{timestamp:.2f}",
+        "-i", str(video_path),
+        "-vframes", "1",
+        "-f", "image2",
+        "-c:v", "mjpeg",
+        "-q:v", "2",
+        "pipe:1",
+    ]
+    result = subprocess.run(cmd, capture_output=True)
+    if result.returncode != 0 or not result.stdout:
+        raise RuntimeError("フレーム抽出に失敗しました")
+    return result.stdout
